@@ -38,7 +38,6 @@ header {
   justify-content: end;
   font-weight: 500;
   position: fixed;
-
 }
 
 .header-right {
@@ -72,6 +71,7 @@ main {
 .feature img {
   width: 250px;
   height: auto;
+  object-fit: cover;
 }
 
 .search {
@@ -80,27 +80,6 @@ main {
   display: flex;
   flex-direction: column;
   gap: 20px;
-}
-
-/*Laptop*/
-@media (max-width: 992px) {
-  .search {
-    width: 60%;
-  }
-}
-
-/*Tab*/
-@media (max-width: 768px) {
-  .search {
-    width: 80%;
-  }
-}
-
-/*Mobile*/
-@media (max-width: 576px) {
-  .search {
-    width: 100%;
-  }
 }
 
 .search-input {
@@ -164,4 +143,35 @@ main {
   margin-left: 4px;
 }
 
-.icon
+/*Laptop*/
+@media (max-width: 992px) {
+  .search {
+    width: 60%;
+  }
+}
+
+/*Tab*/
+@media (max-width: 768px) {
+  .search {
+    width: 80%;
+  }
+  .search-input input {
+    padding: 8px;
+  }
+}
+
+/*Mobile*/
+@media (max-width: 576px) {
+  .header-right {
+    display: flex;
+  }
+  .search {
+    width: 100%;
+  }
+  .search-input input {
+    padding: 5px;
+  }
+  .language div {
+    font-size: 12px;
+  }
+}

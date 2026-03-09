@@ -1,0 +1,4 @@
+/* Styles for registration page - mostly same as login */
+@import url("login.css");
+
+/* Additional overrides for register page can go here if needed */

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daftar</title>
+    <link rel="stylesheet" href="./src/style/register.css" />
+  </head>
+  <body>
+    <div class="login-container">
+      <a href="index.html" class="back-home" data-i18n="beranda"
+        >&larr; Beranda</a
+      >
+      <h2 data-i18n="daftarJudul">Daftar</h2>
+      <form id="register-form">
+        <div class="field">
+          <label for="email" data-i18n="email">Email</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+        <div class="field">
+          <label for="password" data-i18n="password">Kata Sandi</label>
+          <input type="password" id="password" name="password" required />
+        </div>
+        <div class="field">
+          <label for="confirm-password" data-i18n="konfirmasi"
+            >Konfirmasi Kata Sandi</label
+          >
+          <input
+            type="password"
+            id="confirm-password"
+            name="confirm-password"
+            required
+          />
+        </div>
+        <div class="actions">
+          <button type="submit" data-i18n="daftar">Daftar</button>
+        </div>
+      </form>
+      <div class="alt-actions">
+        <p data-i18n="sudah">
+          Sudah punya akun? <a href="login.html" data-i18n="masuk">Masuk</a>
+        </p>
+      </div>
+    </div>
+    <script src="./src/js/register.js"></script>
+    <script src="./src/js/lang.js"></script>
+  </body>
+</html>

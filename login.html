@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="./src/style/login.css" />
+  </head>
+  <body>
+    <div class="login-container">
+      <a href="index.html" class="back-home" data-i18n="beranda"
+        >&larr; Beranda</a
+      >
+      <h2 data-i18n="masuk">Masuk</h2>
+      <form id="login-form">
+        <div class="field">
+          <label for="email" data-i18n="email">Email</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+        <div class="field">
+          <label for="password" data-i18n="password">Kata Sandi</label>
+          <input type="password" id="password" name="password" required />
+        </div>
+        <div class="actions">
+          <a href="#" class="forgot" data-i18n="forgot">Lupa kata sandi?</a>
+          <button type="submit" data-i18n="masuk">Masuk</button>
+        </div>
+      </form>
+      <div class="alt-actions">
+        <p data-i18n="belum">
+          Belum punya akun?
+          <a href="register.html" data-i18n="daftar">Daftar</a>
+        </p>
+        <button id="google-login" data-i18n="masukdengan">
+          Masuk dengan Google
+        </button>
+      </div>
+    </div>
+    <script src="./src/js/login.js"></script>
+    <script src="./src/js/lang.js"></script>
+  </body>
+</html>

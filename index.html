@@ -14,12 +14,12 @@
   <body>
     <header>
       <div class="header-right">
-        <a href="#gmail">Vmail</a>
-        <a href="#gambar">Gambar</a>
-        <a href="#icon1">
+        <a href="under-development.html">Vmail</a>
+        <a href="under-development.html">Gambar</a>
+        <a href="under-development.html">
           <span class="material-icons">apps</span>
         </a>
-        <button class="login-btn">Login</button>
+        <a href="login.html"><button class="login-btn">Login</button></a>
       </div>
     </header>
     <main>
@@ -28,22 +28,24 @@
         <div class="search">
           <div class="search-input">
             <span class="material-icons cari">search</span>
-            <input type="search" placeholder="Program MBG..." />
+            <input type="search" placeholder="Program MBG..." data-i18n="searchPlaceholder" />
             <span class="material-icons photo">photo_camera</span>
           </div>
           <div class="search-action">
-            <button>Hai antek-antek asing</button>
-            <button>Saya lagi beruntung</button>
+            <button data-i18n="button1">Hai antek-antek asing</button>
+            <button data-i18n="button2">Saya lagi beruntung</button>
           </div>
           <div class="language">
             <div>
-              Tersedia dalam bahasa: <a href="#english">English</a>
-              <a href="#indonesia">Indonesia</a>
+              <span data-i18n="availableIn">Tersedia dalam bahasa:</span>
+              <a href="#" data-lang="en" data-i18n="english">English</a>
+              <a href="#" data-lang="id" data-i18n="indonesia">Indonesia</a>
             </div>
           </div>
         </div>
       </div>
     </main>
     <script src="./src/js/index.js"></script>
+    <script src="./src/js/lang.js"></script>
   </body>
 </html>

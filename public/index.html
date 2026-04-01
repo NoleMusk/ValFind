@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Google Design</title>
+    <link rel="stylesheet" href="./src/style/global.css" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+  </head>
+  <body>
+    <header>
+      <div class="header-right">
+        <a href="under-development.html">Vmail</a>
+        <a href="under-development.html">Gambar</a>
+        <a href="under-development.html">
+          <span class="material-icons">apps</span>
+        </a>
+        <a href="login.html"><button class="login-btn">Login</button></a>
+      </div>
+    </header>
+    <main>
+      <div class="feature">
+        <img src="./src/img/image_3c14e591.png" alt="Seattle Search" />
+        <div class="search">
+          <div class="search-input">
+            <span class="material-icons cari">search</span>
+            <input
+              type="search"
+              placeholder="Cari info Seattle..."
+              data-i18n="searchPlaceholder"
+            />
+            <span class="material-icons photo">photo_camera</span>
+          </div>
+          <div class="search-action">
+            <button id="search-button" data-i18n="button1">Cari Seattle</button>
+            <button id="random-button" data-i18n="button2">Jelajahi acak</button>
+          </div>
+          <div class="search-status" aria-live="polite"></div>
+          <section class="results" aria-live="polite"></section>
+          <div class="language">
+            <div>
+              <span data-i18n="availableIn">Tersedia dalam bahasa:</span>
+              <a href="#" data-lang="en" data-i18n="english">English</a>
+              <a href="#" data-lang="id" data-i18n="indonesia">Indonesia</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="./src/js/index.js"></script>
+    <script src="./src/js/lang.js"></script>
+  </body>
+</html>

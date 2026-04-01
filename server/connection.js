@@ -1,35 +1,38 @@
-const mysql = require("mysql");
+const { Pool } = require("pg");
 
-const pool = mysql.createPool({
-  connectionLimit: 10,
-  host: process.env.DB_HOST || "localhost",
-  user: process.env.DB_USER || "root",
-  password: process.env.DB_PASSWORD || "",
-  database: process.env.DB_NAME || "seattle_search",
-});
+const isProduction = process.env.NODE_ENV === "production";
+const hasDatabaseUrl = Boolean(process.env.DATABASE_URL);
 
-pool.getConnection((err, connection) => {
-  if (err) {
-    console.error("MySQL belum siap:", err.message);
-    return;
-  }
-
-  console.log(
-    `Terhubung ke MySQL database '${process.env.DB_NAME || "seattle_search"}'`,
-  );
-  connection.release();
-});
-
-function query(sql, params = []) {
-  return new Promise((resolve, reject) => {
-    pool.query(sql, params, (err, results) => {
-      if (err) {
-        return reject(err);
+const pool = new Pool(
+  hasDatabaseUrl
+    ? {
+        connectionString: process.env.DATABASE_URL,
+        ssl: isProduction ? { rejectUnauthorized: false } : false,
       }
+    : {
+        host: process.env.PGHOST || "localhost",
+        port: Number(process.env.PGPORT) || 5432,
+        user: process.env.PGUSER || "postgres",
+        password: process.env.PGPASSWORD || "postgres",
+        database: process.env.PGDATABASE || "seattle_search",
+        ssl: false,
+      },
+);
 
-      resolve(results);
-    });
+pool
+  .query("SELECT current_database() AS database_name")
+  .then((result) => {
+    console.log(
+      `Terhubung ke PostgreSQL database '${result.rows[0].database_name}'`,
+    );
+  })
+  .catch((error) => {
+    console.error("PostgreSQL belum siap:", error.message);
   });
+
+async function query(sql, params = []) {
+  const result = await pool.query(sql, params);
+  return result.rows;
 }
 
 module.exports = {

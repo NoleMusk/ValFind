@@ -50,41 +50,48 @@ app.get("/api/search", async (req, res) => {
 
   const filters = [];
   const params = [];
+  let paramIndex = 1;
 
   if (query) {
     filters.push(
       `(
-        title LIKE ?
-        OR category LIKE ?
-        OR neighborhood LIKE ?
-        OR summary LIKE ?
-        OR description LIKE ?
-        OR keywords LIKE ?
+        title ILIKE $${paramIndex}
+        OR category ILIKE $${paramIndex + 1}
+        OR neighborhood ILIKE $${paramIndex + 2}
+        OR summary ILIKE $${paramIndex + 3}
+        OR description ILIKE $${paramIndex + 4}
+        OR keywords ILIKE $${paramIndex + 5}
       )`,
     );
     const wildcard = `%${query}%`;
     params.push(wildcard, wildcard, wildcard, wildcard, wildcard, wildcard);
+    paramIndex += 6;
   }
 
   if (category) {
-    filters.push("category = ?");
+    filters.push(`category = $${paramIndex}`);
     params.push(category);
+    paramIndex += 1;
   }
 
   const whereClause = filters.length ? `WHERE ${filters.join(" AND ")}` : "";
+  const titleRankIndex = paramIndex;
+  const keywordRankIndex = paramIndex + 1;
+  const summaryRankIndex = paramIndex + 2;
+  const limitIndex = paramIndex + 3;
   const sql = `
     SELECT id, title, slug, category, neighborhood, summary, description, address, keywords, url
     FROM seattle_places
     ${whereClause}
     ORDER BY
       CASE
-        WHEN title LIKE ? THEN 1
-        WHEN keywords LIKE ? THEN 2
-        WHEN summary LIKE ? THEN 3
+        WHEN title ILIKE $${titleRankIndex} THEN 1
+        WHEN keywords ILIKE $${keywordRankIndex} THEN 2
+        WHEN summary ILIKE $${summaryRankIndex} THEN 3
         ELSE 4
       END,
       title ASC
-    LIMIT ?
+    LIMIT $${limitIndex}
   `;
 
   const rankingWildcard = `%${query}%`;
@@ -125,7 +132,7 @@ app.get("/api/places/:slug", async (req, res) => {
     const results = await db.query(
       `SELECT id, title, slug, category, neighborhood, summary, description, address, keywords, url
        FROM seattle_places
-       WHERE slug = ?
+       WHERE slug = $1
        LIMIT 1`,
       [req.params.slug],
     );
@@ -152,7 +159,7 @@ app.post("/api/auth/register", async (req, res) => {
 
   try {
     const existingUsers = await db.query(
-      "SELECT id FROM users WHERE email = ? LIMIT 1",
+      "SELECT id FROM users WHERE email = $1 LIMIT 1",
       [email],
     );
 
@@ -161,15 +168,15 @@ app.post("/api/auth/register", async (req, res) => {
     }
 
     const passwordHash = hashPassword(password);
-    const result = await db.query(
-      "INSERT INTO users (email, password_hash) VALUES (?, ?)",
+    const result = await db.pool.query(
+      "INSERT INTO users (email, password_hash) VALUES ($1, $2) RETURNING id",
       [email, passwordHash],
     );
 
     return res.status(201).json({
       message: "Registrasi berhasil.",
       user: {
-        id: result.insertId,
+        id: result.rows[0].id,
         email,
       },
     });
@@ -193,7 +200,7 @@ app.post("/api/auth/login", async (req, res) => {
 
   try {
     const users = await db.query(
-      "SELECT id, email, password_hash FROM users WHERE email = ? LIMIT 1",
+      "SELECT id, email, password_hash FROM users WHERE email = $1 LIMIT 1",
       [email],
     );
 

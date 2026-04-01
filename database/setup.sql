@@ -1,2 +1,2 @@
-SOURCE schema.sql;
-SOURCE seed.sql;
+\i schema.sql
+\i seed.sql

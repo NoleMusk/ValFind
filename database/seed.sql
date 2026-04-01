@@ -1,6 +1,4 @@
-USE seattle_search;
-
-DELETE FROM seattle_places;
+TRUNCATE TABLE seattle_places RESTART IDENTITY CASCADE;
 
 INSERT INTO seattle_places
   (title, slug, category, neighborhood, summary, description, address, keywords, url)

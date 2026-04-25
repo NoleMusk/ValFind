@@ -38,6 +38,7 @@ header {
   justify-content: end;
   font-weight: 500;
   position: fixed;
+  background-color: white;
 }
 
 .header-right {

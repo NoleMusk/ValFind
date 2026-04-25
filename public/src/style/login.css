@@ -90,6 +90,10 @@ body {
 }
 
 /* ensure buttons in alt-actions match style */
+.alt-actions .belumpunyaakun-link {
+    
+}
+
 .alt-actions button {
     background-color: #4285f4;
     color: white;

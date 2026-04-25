@@ -6,7 +6,7 @@ Project ini memakai:
 - backend Express
 - PostgreSQL
 
-Konfigurasi sudah disiapkan agar Vercel mendeteksi Express app dari file [index.js](C:/Users/Admin/Desktop/Google%20Design/index.js), sesuai pola yang didukung Vercel untuk Express. Sumber resmi: [Express on Vercel](https://vercel.com/docs/frameworks/backend/express).
+Konfigurasi sudah disiapkan agar Vercel mendeteksi Express app dari file [app.js](C:/Users/Admin/Desktop/Google%20Design/app.js), sesuai pola yang didukung Vercel untuk Express. Sumber resmi: [Express on Vercel](https://vercel.com/docs/frameworks/backend/express).
 
 ## 1. Siapkan database di Supabase
 

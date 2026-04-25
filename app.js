@@ -1,10 +1,10 @@
 const crypto = require("crypto");
 const path = require("path");
 const express = require("express");
-const db = require("./connection");
+const db = require("./server/connection");
 
 const app = express();
-const publicDir = path.join(__dirname, "..", "public");
+const publicDir = path.join(__dirname, "public");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
